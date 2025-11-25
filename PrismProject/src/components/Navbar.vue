@@ -97,7 +97,7 @@
                         Support Network</a>
                         <ul class="dropdown-menu">
                             <li><router-link class="dropdown-item" to="/FindSupport">Find Support</router-link></li>
-                            <li><router-link class="dropdown-item" to="/Book">Book a Session</router-link></li>
+                            <li><router-link class="dropdown-item" to="/Booking">Book a Session</router-link></li>
                             <li><router-link class="dropdown-item" to="/SupportGroup">Support Groups</router-link></li>
                             <li><router-link class="dropdown-item" to="/Crisis">Crisis Support</router-link></li>
                             <li><router-link class="dropdown-item" to="/KnowledgeBase">Knowledge Base / FAQ</router-link></li>
