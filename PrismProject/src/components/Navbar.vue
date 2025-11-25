@@ -40,7 +40,7 @@
 
     <!-- Main Navigation -->
      <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
-        <div class="container">
+        <div class="container align-self-center">
 
             <!-- Hamburger Menu for Mobile -->
              <button 
@@ -51,7 +51,7 @@
             <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-colapse" id="mainNav">
+            <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav mx-auto">
 
                     <!-- About Us -->
