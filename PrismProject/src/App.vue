@@ -7,7 +7,7 @@ import Footer from './components/Footer.vue';
   <div id="app">
     <Navbar/>
     <div class="rainbow-accent-line"></div>
-    <main class="container py-5">
+    <main>
       <router-view/>
     </main>
     <Footer/>
