@@ -75,6 +75,24 @@
                 </button>
             </div>
          </section>
+
+         <!-- Mission Statement -->
+          <div class="container">
+                <h2 class="text-primary text-center fw-bold display-5 mb-5">
+                    Lighting the Path to Wellness.
+                </h2>
+                <p class="text-dark mx-auto lead">
+                    The Prism Project is dedicated to safeguarding the mental, physical, and social well-being of LGBTQIA+ youth. We strive to create a world where every young person—regardless of sexual orientation, gender identity, or expression—has access to the healthcare, crisis support, and mentorship they need to thrive. We believe in refracting the light of compassion to ensure no one is left in the dark.
+                </p>
+          </div>
+
+        <!-- Call to Action: Button to News Page -->
+        <div class="container text-center">
+            <router-link to="/news" class="btn btn-secondary btn-lg fw-bold mt-4 shadow-sm text-uppercase">
+                <i class="fas fa-newspaper me-2"></i> Latest News
+            </router-link>
+        </div>
+
     </div>
 </template>
 
