@@ -1,7 +1,7 @@
 <!-- -->
 <template>
     <!-- Top Ribbon -->
-    <div class="bg-light py-2 border-bottom">
+    <div class="bg-white py-2 border-bottom">
         <div class="container d-flex justify-content-between align-items-center">
 
             <!-- Left: Logo -->
@@ -20,10 +20,10 @@
 
                 <!-- Login Links -->
                 <div>
-                    <router-link to="/MemberLogin" class="me-3 text-decoration-none">
+                    <router-link to="/MemberLogin" class="me-3 text-decoration-none text-primary hover-secondary">
                         Member Login
                     </router-link>
-                    <router-link to="/StaffLogin" class="me-3 text-decoration-none">
+                    <router-link to="/StaffLogin" class="me-3 text-decoration-none text-primary hover-secondary">
                         Staff Login
                     </router-link>
                 </div>
@@ -139,6 +139,9 @@
             </div>
         </div>
      </nav>
+
+     <!-- Footer -->
+    
 </template>
 
 <!-- -->
@@ -148,5 +151,53 @@
 
 <!-- -->
 <style scoped>
+/* Change colour from primary to secondary, eased, on hover*/
+.hover-secondary {
+    color: var(--bs-primary) !important;
+    transition: color 0.3s ease;
+}
+.hover-secondary:hover{
+    color: var(--bs-secondary) !important;
+}
 
+/* Style navbar links */
+.navbar-nav .nav-link {
+    color: var(--bs-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    position: relative;
+    /* Set up underline animation */
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 3px;
+        width: 0;
+        background-color: var(--bs-secondary);
+        transition: width 0.3s ease;
+    }
+}
+
+/* Do underscore animation */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--bs-secondary); 
+    &::after {
+        width: 100%; 
+    }
+}
+
+/* Style search input */
+.search-input {
+  border: 1px solid var(--bs-primary);
+}
+
+/* Style dropdown options */
+.dropdown-menu .dropdown-item:hover {
+  background-color: var(--bs-secondary);
+  color: white;
+}
 </style>

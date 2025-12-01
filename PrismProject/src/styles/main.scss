@@ -1,0 +1,26 @@
+// Import custom variables from other local file
+@import './custom-var.scss';
+
+// Import Bootstrap SCSS source files
+@import 'bootstrap/scss/bootstrap.scss';
+
+// Implement global sticky footer
+html, body, #app {
+    height: 100%;
+}
+
+#app {
+    display:flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
+}
+
+// Prism Project Rainbow Line
+.rainbow-accent-line {
+    background-image: linear-gradient(to right, #FF7B7B, #FFDD7B, #7BFF7B, #7BFFFF, #7B7BFF, #FF7BFF);
+    height: 4px;
+    width: 100%;
+}

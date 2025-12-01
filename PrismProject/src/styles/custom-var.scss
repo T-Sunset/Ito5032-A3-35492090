@@ -1,0 +1,21 @@
+// Define Prism Project colours
+$prp-purple: #4A148C; // Primary Colour
+$prp-magenta: #F06292; // Secondary Colour
+$prp-cyan: #7BFFFF; // Accent Colour
+
+// Overriding Bootstrap's colour map
+$primary: $prp-purple;
+$secondary: $prp-magenta;
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "info": $prp-cyan
+);
+
+// Override typography / fonts
+$font-family-sans-serif: 'Open Sans', sans-serif;
+$headings-font-family: 'Montserrat', sans-serif;
+
+// Override Footer
+$body-bg: #FFFFFF;
+$body-color: #333333;
