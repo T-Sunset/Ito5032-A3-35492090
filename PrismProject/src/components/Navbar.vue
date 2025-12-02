@@ -7,7 +7,7 @@
             <!-- Left: Logo -->
             <div class="d-flex align-items-center">
                 <router-link to="/" class="navbar-brand d-flex align-items-center">
-                    <img src="../assets/logo.png" 
+                    <img src="../assets/prism_project_logo.png" 
                     alt="Prism Project Logo" 
                     class="me-2"
                     style="height:60px; cursor:pointer;"/>
@@ -20,11 +20,11 @@
 
                 <!-- Login Links -->
                 <div>
-                    <router-link to="/MemberLogin" class="me-3 text-decoration-none text-primary hover-secondary">
-                        Member Login
+                    <router-link v-if="currentUser" class="me-3 text-decoration-none text-primary hover-secondary" to="/Login">
+                        Logged in as: <br/>{{ currentUser.email }}
                     </router-link>
-                    <router-link to="/StaffLogin" class="me-3 text-decoration-none text-primary hover-secondary">
-                        Staff Login
+                    <router-link v-else to="/Login" class="me-3 text-decoration-none text-primary hover-secondary">
+                        Member & Staff Login
                     </router-link>
                 </div>
 
@@ -84,7 +84,7 @@
                         Events</a>
                         <ul class="dropdown-menu">
                             <li><router-link class="dropdown-item" to="/Events">Our Events</router-link></li>
-                            <li><router-link class="dropdown-item" to="/Calendar">Calendar View</router-link></li>
+                            <!--<li><router-link class="dropdown-item" to="/Calendar">Calendar View</router-link></li>-->
                         </ul>
                      </li>
 
@@ -145,7 +145,9 @@
 </template>
 
 <!-- -->
-<script>
+<script setup>
+import { currentUser } from '@/firebase';
+import { isAdmin } from '@/firebase';
 
 </script>
 

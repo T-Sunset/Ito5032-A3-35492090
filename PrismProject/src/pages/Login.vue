@@ -5,34 +5,45 @@
       <!-- Main Content on the left side (col-8 on desktop) -->
       <div class="col-12 col-lg-8">
         <div class="content-wrapper p-4">
-            <h1 class="mb-4 text-secondary">Staff Login</h1>
 
-            <!-- Login Form -->
-             <form id="loginForm" @submit.prevent="login">
-                <div class="row mb-3">
-                    <label for="email" class="form-label">E-Mail:</label>
-                    <input type="text" class="form-control" id="email" name="email"
-                    @blur="()=>validateName(true)"
-                    @input="()=>validateName(false)"
-                    v-model="formData.email"></input>
-                    <div v-if="errors.email" class="text-danger">{{ errors.email }}</div><br/>
-                </div>
-                <div class="row mb-3">
-                    <label for="password" class="form-label">Password:</label>
-                    <input type="password" class="form-control" id="password" name="password"
-                    @blur="()=>validatePassword(true)"
-                    @input="()=>validatePassword(false)"
-                    v-model="formData.password"></input>
-                    <div v-if="errors.password" class="text-danger">{{errors.password}}</div><br/>
-                </div>
+            <!-- Display if the user is not logged in -->
+            <div v-if="!currentUser">
+                <h1 class="mb-4 text-secondary">Member & Staff Login</h1>
 
-                <!-- Submission Buttons -->
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary me-2">Log In</button>
-                    <button type="button" class="btn btn-primary me-2" @click="signUp">Sign Up</button>
-                    <button type="button" class="btn btn-secondary" @click="clearForm">Clear</button>
-                </div>
-             </form>
+                <!-- Login Form -->
+                <form id="loginForm" @submit.prevent="login">
+                    <div class="row mb-3">
+                        <label for="email" class="form-label">E-Mail:</label>
+                        <input type="text" class="form-control" id="email" name="email"
+                        @blur="validateEmail(true)"
+                        @input="validateEmail(false)"
+                        v-model="formData.email"></input>
+                        <div v-if="errors.email" class="text-danger">{{ errors.email }}</div><br/>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                        @blur="validatePassword(true)"
+                        @input="validatePassword(false)"
+                        v-model="formData.password"></input>
+                        <div v-if="errors.password" class="text-danger">{{errors.password}}</div><br/>
+                    </div>
+
+                    <!-- Submission Buttons -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary me-2">Log In</button>
+                        <button type="button" class="btn btn-primary me-2" @click="signUp">Sign Up</button>
+                        <button type="button" class="btn btn-secondary" @click="clearForm">Clear</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Display if the user IS logged in -->
+             <div v-else class="text-center">
+                <h1 class="mb-4 text-secondary">Greetings, {{ currentUser.email }}</h1><br/>
+                <p>You are currently logged in{{ isAdmin ? " as an admin" : "" }}.</p><br/>
+                <button class="btn btn-secondary" @click="logOut">Log Out</button>
+             </div>
         </div>
       </div>
     </div>
@@ -42,8 +53,9 @@
 <script setup>
 // Imports
 import {ref} from 'vue';
-import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword} from 'firebase/auth';
-import {getFirestore, doc, getDoc} from 'firebase/firestore';
+import {auth, db, currentUser, isAdmin} from '../firebase.ts';
+import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut} from 'firebase/auth';
+import {getFirestore, doc, getDoc, setDoc} from 'firebase/firestore';
 import {useRouter} from 'vue-router';
 
 // Use router to redirect
@@ -130,6 +142,24 @@ const signUp = async () => {
     }
 }
 
+// Log Out function
+const logOut = async () => {
+    // Try to log out 
+    try {
+        // Run log out function 
+        await signOut(auth);
+
+        // Reset isAdmin just in case 
+        isAdmin.value = false;
+
+        // Redirect to HomePage
+        router.push('/');
+
+    } catch (err) {
+        console.error("Error logging out:", err);
+    }
+};
+
 // Clear Form
 const clearForm = () => {
     formData.value = {
@@ -140,8 +170,8 @@ const clearForm = () => {
 
 // Holds Errors
 const errors = ref({
-    email: null,
-    password: null
+    email: '',
+    password: ''
 });
 
 // Validate Email field

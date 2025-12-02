@@ -11,6 +11,7 @@ import Statistics from '../pages/Statistics.vue'
 
 // NEWS
 import News from '../pages/News.vue'
+import NewsDetail from '../pages/NewsDetail.vue'
 
 // EVENTS
 import Events from '../pages/Events.vue'
@@ -52,6 +53,9 @@ import MemberManagement from '../pages/MemberManagement.vue'
 import Analytics from '../pages/Analytics.vue'
 import Settings from '../pages/Settings.vue'
 
+// LOGIN
+import Login from '../pages/Login.vue'
+
 // Create Routes Constant
 const routes = [
     { path: '/', component: Home },
@@ -62,6 +66,9 @@ const routes = [
     { path: '/Statistics', component: Statistics },
 
     { path: '/News', component: News },
+    { path: '/News/:id', 
+        name:'NewsDetail',
+        component: NewsDetail},
 
     { path: '/Events', component: Events },
     { path: '/Calendar', component: Calendar },
@@ -95,7 +102,9 @@ const routes = [
     { path: '/BookingManagement', component: BookingManagement },
     { path: '/MemberManagement', component: MemberManagement },
     { path: '/Analytics', component: Analytics },
-    { path: '/Settings', component: Settings }
+    { path: '/Settings', component: Settings },
+
+    {path: '/Login', component:Login }
 ]
 
 // Create Router
